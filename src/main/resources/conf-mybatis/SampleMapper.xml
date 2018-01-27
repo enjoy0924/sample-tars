@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alr.mp.eds.dao.SampleMapper">
+  <resultMap id="SampleEntity" type="com.alr.mp.eds.entity.SampleEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="calc_type" jdbcType="INTEGER" property="calcType" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="available" jdbcType="BIT" property="available" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="cost_fee" jdbcType="INTEGER" property="costFee" />
+    <result column="res_uri" jdbcType="VARCHAR" property="resUri" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, category, calc_type, value, available, detail, cost_fee, res_uri, create_time
+  </sql>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="SampleEntity">
+    select 
+    <include refid="Base_Column_List" />
+    from vip_goods
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByCategory" parameterType="java.lang.String" resultMap="SampleEntity">
+    select
+    <include refid="Base_Column_List"/>
+    from vip_goods
+    where category = #{category, jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectGoodsByRes" parameterType="java.lang.String" resultMap="SampleEntity">
+    select
+    <include refid="Base_Column_List"/>
+    from vip_goods
+    where res_uri = #{resUri, jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from vip_goods
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="SampleEntity">
+    insert into vip_goods (id, category, calc_type, 
+      value, available, detail, 
+      cost_fee, res_uri, create_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{calcType,jdbcType=INTEGER}, 
+      #{value,jdbcType=VARCHAR}, #{available,jdbcType=BIT}, #{detail,jdbcType=VARCHAR}, 
+      #{costFee,jdbcType=INTEGER}, #{resUri,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="SampleEntity">
+    insert into vip_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="calcType != null">
+        calc_type,
+      </if>
+      <if test="value != null">
+        value,
+      </if>
+      <if test="available != null">
+        available,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="costFee != null">
+        cost_fee,
+      </if>
+      <if test="resUri != null">
+        res_uri,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="calcType != null">
+        #{calcType,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        #{available,jdbcType=BIT},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="costFee != null">
+        #{costFee,jdbcType=INTEGER},
+      </if>
+      <if test="resUri != null">
+        #{resUri,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="SampleEntity">
+    update vip_goods
+    <set>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="calcType != null">
+        calc_type = #{calcType,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        available = #{available,jdbcType=BIT},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="costFee != null">
+        cost_fee = #{costFee,jdbcType=INTEGER},
+      </if>
+      <if test="resUri != null">
+        res_uri = #{resUri,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SampleEntity">
+    update vip_goods
+    set category = #{category,jdbcType=VARCHAR},
+      calc_type = #{calcType,jdbcType=INTEGER},
+      value = #{value,jdbcType=VARCHAR},
+      available = #{available,jdbcType=BIT},
+      detail = #{detail,jdbcType=VARCHAR},
+      cost_fee = #{costFee,jdbcType=INTEGER},
+      res_uri = #{resUri,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

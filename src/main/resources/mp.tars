@@ -1,0 +1,9 @@
+
+module Servants{
+
+    const int ERROR_CODE_UNKNOWN      = -1;
+    const int ERROR_CODE_OK           = 0;
+
+    interface MarketPromotion{
+    };
+};

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<servants>
+	<servant name="MarketPromotionObj" protocol="tars" port="18600">
+		<home-api>com.alr.mp.servants.MarketPromotionServant</home-api>
+		<home-class>com.alr.mp.servants.impl.MarketPromotionServantImpl</home-class>
+	</servant>
+	
+	<listener>
+		<listener-class>com.alr.mp.listener.AppStartListener</listener-class>
+	</listener>
+</servants>
