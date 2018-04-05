@@ -12,7 +12,7 @@ public class Main {
     public static void main (String[] args){
 
         String path =  System.getProperty("user.dir");
-        String configFilename = "AlrApp.MpServer.config.conf";
+        String configFilename = "AlrApp.ErpServer.config.conf";
 
         String configPath = (path+
                 File.separator+"target"+

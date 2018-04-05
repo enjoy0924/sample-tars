@@ -22,21 +22,17 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean class="com.alr.mp.utils.SpringUtils"/>
+    <bean class="com.altas.erp.utils.SpringUtils"/>
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:conf.properties</value>
+                <value>file:${server.conf.dir}/conf.properties</value>
             </list>
         </property>
     </bean>
 
-    <context:component-scan base-package="com.alr.mp.eds"/>
-
-    <bean id="sample" class="com.alr.mp.component.SampleComponent">
-        <property name="name" value="${sample.component.name}"/>
-    </bean>
+    <context:component-scan base-package="com.altas.erp.eds"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${datasource.driver}"/>
